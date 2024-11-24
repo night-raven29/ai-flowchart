@@ -1,0 +1,37 @@
+#ell
+import numpy as np 
+import matplotlib.pyplot as plt 
+ 
+# Parameters for the elliptic curve 
+a = -1 
+b = 1 
+ 
+# Define the elliptic curve equation 
+def elliptic_curve(x): 
+return np.sqrt(x**3 + a * x + b) 
+ 
+# Generate x values 
+x_values = np.linspace(-2, 2, 400) 
+y_positive = elliptic_curve(x_values) 
+y_negative = -elliptic_curve(x_values) 
+ 
+# Set up the plot 
+plt.figure(figsize=(10, 6)) 
+plt.plot(x_values, y_positive, label='$y^2 = x^3 + ax + b$', color='blue') 
+plt.plot(x_values, y_negative, color='blue') 
+plt.axhline(0, color='black', lw=0.5, ls='--') 
+plt.axvline(0, color='black', lw=0.5, ls='--') 
+ 
+# Indicate parameters 
+plt.text(1, 2, f'a = {a}', fontsize=12, ha='center') 
+plt.text(1, 1.5, f'b = {b}', fontsize=12, ha='center') 
+ 
+# Set plot limits and labels 
+plt.xlim(-2, 2) 
+plt.ylim(-3, 3) 
+plt.title('Elliptic Curve: $y^2 = x^3 + ax + b$') 
+plt.xlabel('x') 
+plt.ylabel('y') 
+plt.grid() 
+plt.legend() 
+plt.show()

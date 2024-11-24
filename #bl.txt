@@ -1,0 +1,12 @@
+#bl
+!pip install pycryptodome
+from Crypto.Cipher import Blowfish
+from Crypto.Random import get_random_bytes
+def encrypt_blowfish(key, plaintext):
+cipher = Blowfish.new(key, Blowfish.MODE_ECB) ciphertext
+= cipher.encrypt(plaintext)
+return ciphertext
+def decrypt_blowfish(key, ciphertext):
+cipher = Blowfish.new(key, Blowfish.MODE_ECB) plaintext =
+cipher.decrypt(ciphertext)
+return plaintext 

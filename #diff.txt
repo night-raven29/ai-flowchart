@@ -1,0 +1,38 @@
+#diff
+import random 
+ 
+def power_mod(base, exp, mod): 
+return pow(base, exp, mod) 
+ 
+def diffie_hellman(prime, generator): 
+alice_private_key = random.randint(1, prime - 1) 
+alice_public_key = power_mod(generator, alice_private_key, prime) 
+ 
+bob_private_key = random.randint(1, prime - 1) 
+bob_public_key = power_mod(generator, bob_private_key, prime) 
+ 
+alice_shared_secret = power_mod(bob_public_key, alice_private_key, prime) 
+ 
+bob_shared_secret = power_mod(alice_public_key, bob_private_key, prime) 
+ 
+print("Prime number (p):", prime) 
+print("Generator (g):", generator) 
+print("Alice's private key:", alice_private_key) 
+print("Alice's public key:", alice_public_key) 
+print("Bob's private key:", bob_private_key) 
+print("Bob's public key:", bob_public_key) 
+ 
+print("\nAlice's computed shared secret:", alice_shared_secret) 
+print("Bob's computed shared secret:", bob_shared_secret) 
+ 
+if alice_shared_secret == bob_shared_secret: 
+print("\nThe shared secret is successfully established!") 
+else: 
+print("\nThere is an issue with the key exchange!") 
+
+Output : 
+if name == " main ": 
+prime = 17 
+generator = 5 
+ 
+diffie_hellman(prime, generator)

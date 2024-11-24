@@ -1,0 +1,21 @@
+#homo
+from Crypto.PublicKey import RSA
+from Crypto.Cipher import PKCS1_OAEP
+from Crypto.Random import get_random_bytes
+
+# Key generation
+key = RSA.generate(2048)
+public_key = key.publickey()
+
+# Initialize cipher
+cipher_encrypt = PKCS1_OAEP.new(public_key)
+cipher_decrypt = PKCS1_OAEP.new(key)
+
+# Encryption
+plaintext = b'Hello, Homomorphic Encryption!'
+ciphertext = cipher_encrypt.encrypt(plaintext)
+print("Ciphertext:", ciphertext)
+
+# Decryption
+decrypted_text = cipher_decrypt.decrypt(ciphertext)
+print("Decrypted Text:", decrypted_text.decode())
