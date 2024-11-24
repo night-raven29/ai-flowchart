@@ -1,0 +1,32 @@
+#water
+pip install pillow
+from PIL import Image, ImageDraw, ImageFont
+
+# File paths
+input_image = "input_image.jpg"  # Input image
+output_image = "watermarked_image.jpg"  # Watermarked image
+
+# Load the image
+image = Image.open(input_image).convert("RGBA")
+
+# Create a transparent overlay for the watermark
+watermark_overlay = Image.new("RGBA", image.size, (255, 255, 255, 0))
+draw = ImageDraw.Draw(watermark_overlay)
+
+# Define the watermark text and font
+watermark_text = "Your Watermark"
+font = ImageFont.truetype("arial.ttf", 36)  # Ensure 'arial.ttf' is available or provide the path
+
+# Position for the watermark (bottom-right corner)
+text_width, text_height = draw.textsize(watermark_text, font=font)
+position = (image.size[0] - text_width - 10, image.size[1] - text_height - 10)
+
+# Add the watermark text to the overlay
+draw.text(position, watermark_text, fill=(255, 255, 255, 128), font=font)
+
+# Combine the watermark overlay with the original image
+watermarked_image = Image.alpha_composite(image, watermark_overlay)
+
+# Save the result
+watermarked_image.convert("RGB").save(output_image)
+print("Watermark added successfully.")

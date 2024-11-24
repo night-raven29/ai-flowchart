@@ -1,0 +1,22 @@
+#steg
+pip install crypto-steganography
+from crypto_steganography import CryptoSteganography
+
+# Initialize with a secret key
+secret_key = "my_secret_key"
+steganography = CryptoSteganography(secret_key)
+
+# File paths
+input_image = "input_image.png"  # Input image
+output_image = "output_image.png"  # Image with the hidden message
+
+# Message to embed
+secret_message = "This is a hidden message!"
+
+# Embedding the message
+steganography.hide(input_image, output_image, secret_message)
+print("Message embedded successfully in the image.")
+
+# Decoding the message
+decoded_message = steganography.retrieve(output_image)
+print(f"Decoded Message: {decoded_message}")
